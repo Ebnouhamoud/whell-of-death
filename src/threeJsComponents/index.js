@@ -10,6 +10,7 @@ import Noodle from "./wheelSlice";
 export default function ThreeJs() {
   const isFocused = useStore((state) => state.isFocused);
   console.log("irun");
+
   return (
     <div className="canvas-container" style={{ zIndex: 1 }}>
       <Canvas
@@ -47,7 +48,7 @@ export default function ThreeJs() {
         <Suspense fallback={null}>
           <Noodle />
         </Suspense>
-        <ControlledOrbit store={isFocused ? [-2.5, 0, 0] : [2, 0, 0]} />
+        <ControlledOrbit store={isFocused ? [-2.5, 0, -5.5] : [2, 0, 0]} />
         <group rotation={[Math.PI / 2, 0, 0]}>
           <WheelContainer />
         </group>
@@ -80,7 +81,10 @@ const ControlledOrbit = ({ store }) => {
     );
 
     // state.camera.lookAt(new Vector3(store[0], store[1], store[2]));
-    // state.camera.position.lerp(new Vector3(store[0], store[1], store[2]), 0.05);
+    state.camera.position.lerp(
+      new Vector3(store[0] - 1, store[1], store[2] + 7),
+      0.08
+    );
     // state.camera.updateProjectionMatrix();
   });
 
@@ -90,6 +94,7 @@ const ControlledOrbit = ({ store }) => {
       enableZoom={true}
       enablePan={true}
       enableRotate={true}
+      min
     />
   );
 };

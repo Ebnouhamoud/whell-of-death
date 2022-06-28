@@ -31,6 +31,7 @@ const shuffleArray = (array) => {
 function App() {
   const setIsFocused = useStore((state) => state.setIsFocused);
   const setIsSpinning = useStore((state) => state.setIsSpinning);
+  const isFocused = useStore((state) => state.isFocused);
   return (
     <>
       <ThreeJs />
@@ -73,7 +74,7 @@ function App() {
             fontSize: "20px",
           }}
         >
-          Focus On Winner
+          {isFocused ? "Focus On Wheel" : "Focus On Winner"}
         </Button>
         <Button
           onClick={() => setIsSpinning(true)}
@@ -85,6 +86,7 @@ function App() {
             width: "100%",
             fontFamily: "Saira Stencil One",
             fontSize: "20px",
+            backgroundColor: "#ef233c",
           }}
         >
           Spin The Wheel
