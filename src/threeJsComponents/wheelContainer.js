@@ -27,21 +27,29 @@ export default function WheelContainer() {
 
   return (
     <group onClick={() => setRun(true)} ref={wheelRef}>
-      {users.map((el, index) => {
-        return (
+      {users.map((el, index, array) => {
+        const count = new Array(el.count).fill(0);
+        let totalCount = 0;
+        array.forEach((el) => (totalCount += el.count - 1));
+        let startIndex = 0;
+        for (let y = 0; y < index; y++) {
+          startIndex += users[y].count;
+        }
+        console.log(startIndex, totalCount);
+        return count.map((_, indexY) => (
           <ThreeCircle
             position={[-1.2, 0, 0]}
-            triangleCount={users.length}
-            start={index + 1}
+            triangleCount={users.length + totalCount}
+            start={startIndex + 1 + indexY}
             color={el.color}
             name={el.name}
-            key={el.color}
+            key={el.color + indexY}
             run={run}
             setRun={setRun}
             random={random}
             setRandom={setRandom}
           />
-        );
+        ));
       })}
       <mesh
         rotation={[0, Math.PI - 0.35, 0]}
