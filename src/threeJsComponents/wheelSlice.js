@@ -48,7 +48,7 @@ const material = new LayerMaterial({
 
 function Noodle() {
   const { viewport, camera } = useThree();
-  const { nodes } = useGLTF("/wormstransformed.glb");
+  const { nodes } = useGLTF("%PUBLIC_URL%/wormstransformed.glb");
   const [geometry] = useState(
     () => nodes[`noodle_${Math.ceil(Math.random() * 4)}`].geometry
   );
