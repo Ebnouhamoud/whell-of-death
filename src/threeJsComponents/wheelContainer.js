@@ -35,7 +35,6 @@ export default function WheelContainer() {
         for (let y = 0; y < index; y++) {
           startIndex += users[y].count;
         }
-        console.log(startIndex, totalCount);
         return count.map((_, indexY) => (
           <ThreeCircle
             position={[-1.2, 0, 0]}
