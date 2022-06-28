@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Reflector, OrbitControls, useTexture } from "@react-three/drei";
 import WheelContainer from "./wheelContainer.js";
@@ -44,7 +44,9 @@ export default function ThreeJs() {
         </mesh>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
-        <Noodle />
+        <Suspense fallback={null}>
+          <Noodle />
+        </Suspense>
         <ControlledOrbit store={isFocused ? [-2.5, 0, 0] : [2, 0, 0]} />
         <group rotation={[Math.PI / 2, 0, 0]}>
           <WheelContainer />
